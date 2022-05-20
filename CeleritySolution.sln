@@ -10,6 +10,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CeleritySolution.Data", "CeleritySolution.Data\CeleritySolution.Data.csproj", "{B1C464A4-458F-4D2A-9153-C8B4DBD73724}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CeleritySolution.Application", "CeleritySolution.Application\CeleritySolution.Application.csproj", "{E048E145-A4C8-4CCD-BFED-A87196F57DA5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,6 +24,14 @@ Global
 		{49C9E0FA-2770-42AA-AE48-78740E465039}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{49C9E0FA-2770-42AA-AE48-78740E465039}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{49C9E0FA-2770-42AA-AE48-78740E465039}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1C464A4-458F-4D2A-9153-C8B4DBD73724}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1C464A4-458F-4D2A-9153-C8B4DBD73724}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1C464A4-458F-4D2A-9153-C8B4DBD73724}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1C464A4-458F-4D2A-9153-C8B4DBD73724}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E048E145-A4C8-4CCD-BFED-A87196F57DA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E048E145-A4C8-4CCD-BFED-A87196F57DA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E048E145-A4C8-4CCD-BFED-A87196F57DA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E048E145-A4C8-4CCD-BFED-A87196F57DA5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
