@@ -1,6 +1,7 @@
 ﻿using CeleritySolution.Data.Configurations;
 using CeleritySolution.Data.Entities;
 using CeleritySolution.Data.Extensions;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace CeleritySolution.Data.EF
 {
-    public class CelerityDbContext : DbContext
+    public class CelerityDbContext : IdentityDbContext
     {
         public CelerityDbContext(DbContextOptions options) : base(options)
         {
