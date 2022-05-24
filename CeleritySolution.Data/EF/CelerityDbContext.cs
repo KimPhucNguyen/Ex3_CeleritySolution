@@ -1,5 +1,6 @@
 ﻿using CeleritySolution.Data.Configurations;
 using CeleritySolution.Data.Entities;
+using CeleritySolution.Data.Extensions;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,7 @@ namespace CeleritySolution.Data.EF
             modelBuilder.ApplyConfiguration(new DistributorConfiguration());
             modelBuilder.ApplyConfiguration(new AgreementConfiguration());
 
+            modelBuilder.Seed();
             //base.OnModelCreating(modelBuilder);
         }
 
