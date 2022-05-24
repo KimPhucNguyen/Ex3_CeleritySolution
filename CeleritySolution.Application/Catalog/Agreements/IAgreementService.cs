@@ -13,5 +13,6 @@ namespace CeleritySolution.Application.Catalog.Agreements
         Task<int> Update(AgreementUpdateRequest request);
         Task<int> Delete(int AgreementId);
         Task<List<AgreementViewModel>> GetAll();
+        Task<AgreementViewModel> GetById(int AgreementId);
     }
 }

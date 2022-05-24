@@ -1,4 +1,5 @@
 ﻿using CeleritySolution.Application.Catalog.Agreements;
+using CeleritySolution.ViewModels.Catalog.Agreements;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,6 +20,57 @@ namespace CeleritySolution.BackendApi.Controllers
         {
             var agreements = await _agreementService.GetAll();
             return Ok(agreements);
+        }
+
+        [HttpGet("{agreementId}")]
+        public async Task<IActionResult> GetById(int agreementId)
+        {
+            var agreement = await _agreementService.GetById(agreementId);
+            if (agreement == null)
+                return BadRequest("Cannot find agreement");
+            return Ok(agreement);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create([FromForm] AgreementCreateRequest request)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var agreementId = await _agreementService.Create(request);
+            if (agreementId == 0)
+                return BadRequest();
+
+            var agreement = await _agreementService.GetById(agreementId);
+
+            return CreatedAtAction(nameof(GetById), new { id = agreementId }, agreement);
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> Update([FromForm] AgreementUpdateRequest request)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var affectedResult = await _agreementService.Update(request);
+            if (affectedResult == 0)
+                return BadRequest();
+
+            return Ok();
+        }
+
+        [HttpDelete("{agreementId}")]
+        public async Task<IActionResult> Delete(int agreementId)
+        {
+            var affectedResult = await _agreementService.Delete(agreementId);
+            if (affectedResult == 0)
+                return BadRequest();
+
+            return Ok();
         }
     }
 }

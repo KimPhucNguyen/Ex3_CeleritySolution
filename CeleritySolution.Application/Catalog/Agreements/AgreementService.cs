@@ -50,7 +50,7 @@ namespace CeleritySolution.Application.Catalog.Agreements
         public async Task<List<AgreementViewModel>> GetAll()
         {
             var query = from agreement in _context.Agreements
-                        join distributor in _context.Distributors on agreement.Id equals distributor.Id
+                        join distributor in _context.Distributors on agreement.DistributorId equals distributor.Id
                         select new { agreement, distributor };
 
             var data = await query.Select(x => new AgreementViewModel()
@@ -68,6 +68,26 @@ namespace CeleritySolution.Application.Catalog.Agreements
             }).ToListAsync();
 
             return data;
+        }
+
+        public async Task<AgreementViewModel> GetById(int AgreementId)
+        {
+            var agreement = await _context.Agreements.FindAsync(AgreementId);
+            var distributor = await _context.Distributors.FirstOrDefaultAsync(x => x.Id == agreement.DistributorId);
+            var agreementViewModel = new AgreementViewModel()
+            {
+                Id = agreement.Id,
+                Status = agreement.Status,
+                QuoteNumber = agreement.QuoteNumber,
+                AgreementName = agreement.AgreementName,
+                AgreementType = agreement.AgreementType,
+                DistributorName = distributor.DistributorName,
+                EffectiveDate = agreement.EffectiveDate,
+                ExpirationDate = agreement.ExpirationDate,
+                CreatedDate = agreement.CreatedDate,
+                DaysUntilExplation = agreement.DaysUntilExplation,
+            };
+            return agreementViewModel;
         }
 
         public async Task<int> Update(AgreementUpdateRequest request)
