@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace CeleritySolution.Data.EF
 {
-    public class CelerityDbContext : IdentityDbContext
+    public class CelerityDbContext : DbContext
     {
         public CelerityDbContext(DbContextOptions options) : base(options)
         {
