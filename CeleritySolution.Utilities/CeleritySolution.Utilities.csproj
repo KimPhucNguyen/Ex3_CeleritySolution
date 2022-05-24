@@ -8,8 +8,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CeleritySolution.Data\CeleritySolution.Data.csproj" />
-    <ProjectReference Include="..\CeleritySolution.Utilities\CeleritySolution.Utilities.csproj" />
-    <ProjectReference Include="..\CeleritySolution.ViewModels\CeleritySolution.ViewModels.csproj" />
   </ItemGroup>
 
 </Project>
