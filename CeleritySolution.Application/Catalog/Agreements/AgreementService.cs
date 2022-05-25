@@ -2,6 +2,7 @@
 using CeleritySolution.Data.Entities;
 using CeleritySolution.Utilities.Exceptions;
 using CeleritySolution.ViewModels.Catalog.Agreements;
+using CeleritySolution.ViewModels.Common;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -47,11 +48,46 @@ namespace CeleritySolution.Application.Catalog.Agreements
             return await _context.SaveChangesAsync();
         }
 
-        public async Task<List<AgreementViewModel>> GetAll()
+        public async Task<PagedResult<AgreementViewModel>> GetAll(GetAgreementPagingRequest request)
         {
             var query = from agreement in _context.Agreements
                         join distributor in _context.Distributors on agreement.DistributorId equals distributor.Id
                         select new { agreement, distributor };
+
+            int totalRow = await query.CountAsync();
+
+            var data = await query.Skip((request.PageIndex - 1) * request.PageSize)
+                .Take(request.PageSize)
+                .Select(x => new AgreementViewModel()
+            {
+                Id = x.agreement.Id,
+                Status = x.agreement.Status,
+                QuoteNumber = x.agreement.QuoteNumber,
+                AgreementName = x.agreement.AgreementName,
+                AgreementType = x.agreement.AgreementType,
+                DistributorName = x.distributor.DistributorName,
+                EffectiveDate = x.agreement.EffectiveDate,
+                ExpirationDate = x.agreement.ExpirationDate,
+                CreatedDate = x.agreement.CreatedDate,
+                DaysUntilExplation = x.agreement.DaysUntilExplation,
+            }).ToListAsync();
+
+            var pagedResult = new PagedResult<AgreementViewModel>()
+            {
+                TotalRecord = totalRow,
+                Items = data,
+            };
+            return pagedResult;
+        }
+
+        public async Task<List<AgreementViewModel>> GetByAgreementName(string AgreementName)
+        {
+            var query = from agreement in _context.Agreements
+                        join distributor in _context.Distributors on agreement.DistributorId equals distributor.Id
+                        select new { agreement, distributor };
+
+            if (!string.IsNullOrEmpty(AgreementName))
+                query = query.Where(x => x.agreement.AgreementName.Contains(AgreementName));
 
             var data = await query.Select(x => new AgreementViewModel()
             {
@@ -73,6 +109,8 @@ namespace CeleritySolution.Application.Catalog.Agreements
         public async Task<AgreementViewModel> GetById(int AgreementId)
         {
             var agreement = await _context.Agreements.FindAsync(AgreementId);
+            if(agreement == null)
+            { return null; }
             var distributor = await _context.Distributors.FirstOrDefaultAsync(x => x.Id == agreement.DistributorId);
             var agreementViewModel = new AgreementViewModel()
             {

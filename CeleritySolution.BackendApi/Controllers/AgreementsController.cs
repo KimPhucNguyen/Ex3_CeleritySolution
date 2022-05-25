@@ -16,9 +16,9 @@ namespace CeleritySolution.BackendApi.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> GetAgreement([FromQuery] GetAgreementPagingRequest request)
         {
-            var agreements = await _agreementService.GetAll();
+            var agreements = await _agreementService.GetAll(request);
             return Ok(agreements);
         }
 
@@ -26,6 +26,15 @@ namespace CeleritySolution.BackendApi.Controllers
         public async Task<IActionResult> GetById(int agreementId)
         {
             var agreement = await _agreementService.GetById(agreementId);
+            if (agreement == null)
+                return BadRequest("Cannot find agreement");
+            return Ok(agreement);
+        }
+
+        [HttpGet("getbyagreementName/{agreementName}")]
+        public async Task<IActionResult> GetByAgreementName(string agreementName)
+        {
+            var agreement = await _agreementService.GetByAgreementName(agreementName);
             if (agreement == null)
                 return BadRequest("Cannot find agreement");
             return Ok(agreement);
