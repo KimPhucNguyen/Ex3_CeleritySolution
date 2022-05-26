@@ -5,7 +5,19 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using System.Configuration;
 
+var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("PolicyCelerity",
+                      policy =>
+                      {
+                          policy.WithOrigins("http://localhost:4200")
+                                    .AllowAnyHeader()
+                                    .AllowAnyMethod();
+                      });
+});
 
 var connectionString = builder.Configuration.GetConnectionString("CeleritySolutionDb");
 builder.Services.AddDbContext<CelerityDbContext>(x => x.UseSqlServer(connectionString));
@@ -38,6 +50,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.UseCors(MyAllowSpecificOrigins);
 
 app.UseAuthorization();
 

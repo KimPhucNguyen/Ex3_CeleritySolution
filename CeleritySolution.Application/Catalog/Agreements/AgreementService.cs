@@ -75,7 +75,7 @@ namespace CeleritySolution.Application.Catalog.Agreements
             var pagedResult = new PagedResult<AgreementViewModel>()
             {
                 TotalRecord = totalRow,
-                Items = data,
+                Data = data,
             };
             return pagedResult;
         }

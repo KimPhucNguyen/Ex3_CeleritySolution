@@ -8,7 +8,7 @@ namespace CeleritySolution.ViewModels.Common
 {
     public class PagedResult<T>
     {
-        public List<T> Items { get; set; }
+        public List<T> Data { get; set; }
         public int TotalRecord { get; set; }
     }
 }
