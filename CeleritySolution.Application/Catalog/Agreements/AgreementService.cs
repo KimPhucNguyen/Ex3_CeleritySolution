@@ -52,6 +52,7 @@ namespace CeleritySolution.Application.Catalog.Agreements
         {
             var query = from agreement in _context.Agreements
                         join distributor in _context.Distributors on agreement.DistributorId equals distributor.Id
+                        orderby agreement.Id descending
                         select new { agreement, distributor };
 
             int totalRow = await query.CountAsync();
