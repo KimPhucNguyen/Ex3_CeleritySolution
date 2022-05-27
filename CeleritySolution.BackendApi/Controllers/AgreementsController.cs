@@ -60,7 +60,7 @@ namespace CeleritySolution.BackendApi.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> Update([FromForm] AgreementUpdateRequest request)
+        public async Task<IActionResult> Update([FromBody] AgreementUpdateRequest request)
         {
             if (!ModelState.IsValid)
             {
