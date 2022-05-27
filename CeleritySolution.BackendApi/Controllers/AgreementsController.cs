@@ -1,5 +1,6 @@
 ﻿using CeleritySolution.Application.Catalog.Agreements;
 using CeleritySolution.ViewModels.Catalog.Agreements;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,6 +16,7 @@ namespace CeleritySolution.BackendApi.Controllers
             _agreementService = agreementService;
         }
 
+        [EnableCors("PolicyCelerity")]
         [HttpGet]
         public async Task<IActionResult> GetAgreement([FromQuery] GetAgreementPagingRequest request)
         {
