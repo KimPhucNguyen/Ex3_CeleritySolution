@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace CeleritySolution.BackendApi.Controllers
 {
     [Route("api/[controller]")]
+    [EnableCors("PolicyCelerity")]
     [ApiController]
     public class AgreementsController : ControllerBase
     {
@@ -16,7 +17,6 @@ namespace CeleritySolution.BackendApi.Controllers
             _agreementService = agreementService;
         }
 
-        [EnableCors("PolicyCelerity")]
         [HttpGet]
         public async Task<IActionResult> GetAgreement([FromQuery] GetAgreementPagingRequest request)
         {
@@ -43,7 +43,7 @@ namespace CeleritySolution.BackendApi.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromForm] AgreementCreateRequest request)
+        public async Task<IActionResult> Create([FromBody] AgreementCreateRequest request)
         {
             if (!ModelState.IsValid)
             {
