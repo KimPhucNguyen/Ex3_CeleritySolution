@@ -66,12 +66,12 @@ namespace CeleritySolution.Application.Catalog.Agreements
             if (!string.IsNullOrEmpty(request.DistributorName))
                 query = query.Where(x => x.distributor.DistributorName.Contains(request.DistributorName));
             if(request.EffectiveDate != null)
-                query = query.Where(x=>x.agreement.EffectiveDate.Equals(request.EffectiveDate));
+                query = query.Where(x=>x.agreement.EffectiveDate.Date.Equals(request.EffectiveDate));
             if (request.ExpirationDate != null)
-                query = query.Where(x => x.agreement.ExpirationDate.Equals(request.ExpirationDate));
+                query = query.Where(x => x.agreement.ExpirationDate.Date.Equals(request.ExpirationDate));
             if (request.CreatedDate != null)
-                query = query.Where(x => x.agreement.CreatedDate.Equals(request.CreatedDate));
-            if(request.DaysUntilExplation != null)
+                query = query.Where(x => x.agreement.CreatedDate.Date.Equals(request.CreatedDate));
+            if(request.DaysUntilExplation != null && request.DaysUntilExplation != 0)
                 query = query.Where(x => x.agreement.DaysUntilExplation.Equals(request.DaysUntilExplation));
 
             int totalRow = await query.CountAsync();
