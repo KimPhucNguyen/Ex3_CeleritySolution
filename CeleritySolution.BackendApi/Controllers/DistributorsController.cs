@@ -1,10 +1,12 @@
 ﻿using CeleritySolution.Application.Catalog.Distributors;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CeleritySolution.BackendApi.Controllers
 {
     [Route("api/[controller]")]
+    [EnableCors("PolicyCelerity")]
     [ApiController]
     public class DistributorsController : ControllerBase
     {
