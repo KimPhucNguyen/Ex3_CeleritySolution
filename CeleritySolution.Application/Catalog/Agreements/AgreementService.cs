@@ -32,7 +32,8 @@ namespace CeleritySolution.Application.Catalog.Agreements
                 ExpirationDate = request.ExpirationDate,
                 CreatedDate = request.CreatedDate,
                 DistributorId = request.DistributorId,
-                DaysUntilExplation = request.DaysUntilExplation,
+                //DaysUntilExplation = request.DaysUntilExplation,
+                DaysUntilExplation = (int)(request.ExpirationDate - request.CreatedDate).TotalDays,
             };
             _context.Agreements.Add(agreement);
             await _context.SaveChangesAsync();
@@ -65,13 +66,13 @@ namespace CeleritySolution.Application.Catalog.Agreements
                 query = query.Where(x => x.agreement.AgreementType.Contains(request.AgreementType));
             if (!string.IsNullOrEmpty(request.DistributorName))
                 query = query.Where(x => x.distributor.DistributorName.Contains(request.DistributorName));
-            if(request.EffectiveDate != null)
-                query = query.Where(x=>x.agreement.EffectiveDate.Date.Equals(request.EffectiveDate));
+            if (request.EffectiveDate != null)
+                query = query.Where(x => x.agreement.EffectiveDate.Date.Equals(request.EffectiveDate));
             if (request.ExpirationDate != null)
                 query = query.Where(x => x.agreement.ExpirationDate.Date.Equals(request.ExpirationDate));
             if (request.CreatedDate != null)
                 query = query.Where(x => x.agreement.CreatedDate.Date.Equals(request.CreatedDate));
-            if(request.DaysUntilExplation != null && request.DaysUntilExplation != 0)
+            if (request.DaysUntilExplation != null && request.DaysUntilExplation != 0)
                 query = query.Where(x => x.agreement.DaysUntilExplation.Equals(request.DaysUntilExplation));
 
             int totalRow = await query.CountAsync();
@@ -91,6 +92,7 @@ namespace CeleritySolution.Application.Catalog.Agreements
                     ExpirationDate = x.agreement.ExpirationDate,
                     CreatedDate = x.agreement.CreatedDate,
                     DaysUntilExplation = x.agreement.DaysUntilExplation,
+                    //DaysUntilExplation = (int)(x.agreement.ExpirationDate - x.agreement.CreatedDate).TotalDays,
                 }).ToListAsync();
 
             var pagedResult = new PagedResult<AgreementViewModel>()
@@ -162,7 +164,8 @@ namespace CeleritySolution.Application.Catalog.Agreements
             agreement.ExpirationDate = request.ExpirationDate;
             agreement.CreatedDate = request.CreatedDate;
             agreement.DistributorId = request.DistributorId;
-            agreement.DaysUntilExplation = request.DaysUntilExplation;
+            //agreement.DaysUntilExplation = request.DaysUntilExplation;
+            agreement.DaysUntilExplation = (int)(request.ExpirationDate - request.CreatedDate).TotalDays;
 
             return await _context.SaveChangesAsync();
         }
