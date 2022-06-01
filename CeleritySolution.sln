@@ -3,12 +3,22 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32421.90
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CeleritySolution", "CeleritySolution\CeleritySolution.csproj", "{49C9E0FA-2770-42AA-AE48-78740E465039}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CeleritySolution", "CeleritySolution\CeleritySolution.csproj", "{49C9E0FA-2770-42AA-AE48-78740E465039}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BA78CC00-71F4-4AA0-86DC-B1907EA3C6C8}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
 	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CeleritySolution.Data", "CeleritySolution.Data\CeleritySolution.Data.csproj", "{B1C464A4-458F-4D2A-9153-C8B4DBD73724}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CeleritySolution.Application", "CeleritySolution.Application\CeleritySolution.Application.csproj", "{E048E145-A4C8-4CCD-BFED-A87196F57DA5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CeleritySolution.ViewModels", "CeleritySolution.ViewModels\CeleritySolution.ViewModels.csproj", "{C5956559-34DE-47B6-9901-544A0E810276}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CeleritySolution.Utilities", "CeleritySolution.Utilities\CeleritySolution.Utilities.csproj", "{81397610-D02D-40D9-910E-4E1ACEA9CC48}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CeleritySolution.BackendApi", "CeleritySolution.BackendApi\CeleritySolution.BackendApi.csproj", "{6A19DE93-BC01-4F0B-AFBF-19F0DE1A6B05}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,6 +30,26 @@ Global
 		{49C9E0FA-2770-42AA-AE48-78740E465039}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{49C9E0FA-2770-42AA-AE48-78740E465039}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{49C9E0FA-2770-42AA-AE48-78740E465039}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1C464A4-458F-4D2A-9153-C8B4DBD73724}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1C464A4-458F-4D2A-9153-C8B4DBD73724}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1C464A4-458F-4D2A-9153-C8B4DBD73724}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1C464A4-458F-4D2A-9153-C8B4DBD73724}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E048E145-A4C8-4CCD-BFED-A87196F57DA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E048E145-A4C8-4CCD-BFED-A87196F57DA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E048E145-A4C8-4CCD-BFED-A87196F57DA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E048E145-A4C8-4CCD-BFED-A87196F57DA5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5956559-34DE-47B6-9901-544A0E810276}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5956559-34DE-47B6-9901-544A0E810276}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5956559-34DE-47B6-9901-544A0E810276}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5956559-34DE-47B6-9901-544A0E810276}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81397610-D02D-40D9-910E-4E1ACEA9CC48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81397610-D02D-40D9-910E-4E1ACEA9CC48}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81397610-D02D-40D9-910E-4E1ACEA9CC48}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81397610-D02D-40D9-910E-4E1ACEA9CC48}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A19DE93-BC01-4F0B-AFBF-19F0DE1A6B05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A19DE93-BC01-4F0B-AFBF-19F0DE1A6B05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A19DE93-BC01-4F0B-AFBF-19F0DE1A6B05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A19DE93-BC01-4F0B-AFBF-19F0DE1A6B05}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
