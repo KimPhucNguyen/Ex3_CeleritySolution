@@ -1,6 +1,9 @@
 using CeleritySolution.Application.Catalog.Agreements;
 using CeleritySolution.Application.Catalog.Distributors;
+using CeleritySolution.Application.System.Users;
 using CeleritySolution.Data.EF;
+using CeleritySolution.Data.Entities;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using System.Configuration;
@@ -14,9 +17,13 @@ builder.Services.AddCors(options =>
                       policy =>
                       {
                           policy.WithOrigins("http://localhost:4200")
-                                    .AllowAnyHeader()
-                                    .AllowAnyMethod();
+                                     .AllowAnyHeader()
+                                     .AllowAnyMethod();
+
                           policy.WithOrigins("https://kimphucnguyen.github.io")
+                                   .AllowAnyHeader()
+                                   .AllowAnyMethod();
+                          policy.WithOrigins("http://103.92.24.117")
                                    .AllowAnyHeader()
                                    .AllowAnyMethod();
                       });
@@ -25,9 +32,17 @@ builder.Services.AddCors(options =>
 var connectionString = builder.Configuration.GetConnectionString("CeleritySolutionDb");
 builder.Services.AddDbContext<CelerityDbContext>(x => x.UseSqlServer(connectionString));
 
+builder.Services.AddIdentity<AppUser, AppRole>()
+    .AddEntityFrameworkStores<CelerityDbContext>()
+    .AddDefaultTokenProviders();
+
 //Declare DI
 builder.Services.AddTransient<IDistributorService, DistributorService>();
 builder.Services.AddTransient<IAgreementService, AgreementService>();
+builder.Services.AddTransient<UserManager<AppUser>, UserManager<AppUser>>();
+builder.Services.AddTransient<SignInManager<AppUser>, SignInManager<AppUser>>();
+builder.Services.AddTransient<RoleManager<AppRole>, RoleManager<AppRole>>();
+builder.Services.AddTransient<IUserService, UserService>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -54,7 +69,8 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseCors(MyAllowSpecificOrigins);
+app.UseCors();
+//app.UseCors("PolicyCelerity");
 
 app.UseAuthorization();
 
